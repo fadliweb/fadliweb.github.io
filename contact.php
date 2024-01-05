@@ -41,9 +41,9 @@
         </a>
 
         <nav id="navbar" class="navbar">
-          <ul>
+        <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">Profil</a></li>
+            <li><a href="about.html">Profile</a></li>
             <li class="dropdown">
               <a href="#"><span>Gallery</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
               <ul>
@@ -54,7 +54,7 @@
                 <li><a href="sasuke.html">Sasuke</a></li>
               </ul>
             </li>
-            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="contact.php" class="active">Contact</a></li>
           </ul>
         </nav>
         <!-- .navbar -->
@@ -133,37 +133,46 @@
             </div>
             <!-- End Info Item -->
           </div>
-          
 
           <div class="row justify-content-center mt-4">
             <div class="col-lg-9">
-              <form action="" method="post" role="form" class="php-email-form">
+              
+              <form action="" method="post" >
                 <div class="row">
                   
                 <div class="form-group mt-3">
                   <label><b>NAMA</label></b>
-                  <input type="text" class="form-control" name="NAMA"   required />
+                  <input type="text" class="form-control" name="nama"/>
                 </div>
                 <div class="form-group mt-3">
                   <label><b>EMAIL</label></b>
-                  <input type="text" class="form-control" name="EMAIL"   required />
+                  <input type="text" class="form-control" name="email"/>
                 </div>
                 <div class="form-group mt-3">
                   <label><b>NO TELPON</label></b>
-                  <input type="text" class="form-control" name="TELEPON"   required />
+                  <input type="text" class="form-control" name="telepon"/>
                 </div>
                 <div class="form-group mt-3">
                   <label><b>KOMENTAR</label></b>
-                  <textarea class="form-control" name="PESAN" rows="5" required></textarea>
+                  <textarea class="form-control" name="pesan" rows="5" required></textarea>
                 </div>
-                <div class="my-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
-                <div class="text-center"><button type="submit" name="prses">SIMPAN</button></div>
+                
+                <div class="text-center"><button type="submit" name="proses">SIMPAN</button></div>
               </form>
             </div>
+
+            <?php
+          include "koneksi.php";
+          if(isset($_POST['proses'])){
+            mysqli_query($koneksi,"insert into komentar set
+            nama = '$_POST[nama]',
+            email = '$_POST[email]',
+            telepon = '$_POST[telepon]',
+            pesan = '$_POST[pesan]'");
+
+            echo "Data Telah Tersimpan";
+          }
+          ?>
             <!-- End Contact Form -->
           </div>
         </div>
